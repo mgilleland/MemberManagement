@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="modal-header">
+    <div class="modal-title">{{title}}</div>
+  </div>
+
+  <div class="modal-body">
+    <div class="col-md-12" *ngIf="!dataError && !fetchingData">
+      <form [formGroup]="memberForm" (ngSubmit)="saveMember(memberForm.value)" novalidate>
+        <input formControlName="id" id="id" type="hidden" />
+        <div class="form-group" [ngClass]="{'error' : userNameMessage }">
+          <label for="userName">User Name:</label>
+          <em *ngIf="userNameMessage">{{ userNameMessage }}</em>
+          <input formControlName="userName" id="userName" type="text" class="form-control" placeholder="User Name (required)" />
+        </div>
+        <div class="form-group" [ngClass]="{'error' : firstNameMessage }">
+          <label for="firstName">First Name:</label>
+          <em *ngIf="firstNameMessage">{{ firstNameMessage }}</em>
+          <input formControlName="firstName" id="firstName" type="text" class="form-control" placeholder="First Name (required)" />
+        </div>
+        <div class="form-group" [ngClass]="{'error' : lastNameMessage }">
+          <label for="lastName">Last Name:</label>
+          <em *ngIf="lastNameMessage">{{ lastNameMessage }}</em>
+          <input formControlName="lastName" id="lastName" type="text" class="form-control" placeholder="Last Name (required)" />
+        </div>
+        <div class="form-group" [ngClass]="{'error' : emailMessage }">
+          <label for="email">Email:</label>
+          <em *ngIf="emailMessage">{{ emailMessage }}</em>
+          <input formControlName="email" id="email" type="text" class="form-control" placeholder="Email (required)" />
+        </div>
+        <div class="form-group" [ngClass]="{'error' : phoneNumberMessage }">
+          <label for="phoneNumber">Phone Number:</label>
+          <em *ngIf="phoneNumberMessage">{{ phoneNumberMessage }}</em>
+          <input formControlName="phoneNumber" id="phoneNumber" type="text" class="form-control" placeholder="Phone Number" />
+        </div>
+        <div class="form-group" [ngClass]="{'error' : dateOfBirthMessage }">
+          <em *ngIf="dateOfBirthMessage">{{ dateOfBirthMessage }}</em>
+          <label for="dateOfBirth">Date of Birth:</label>
+          <input formControlName="dateOfBirth" id="dateOfBirth" type="text" class="form-control" placeholder="MM/DD/YYYY (required)" />
+        </div>
+        <div class="pull-right" style="margin-bottom: 10px;">
+          <button type="submit" #save [disabled]="memberForm.invalid || submitInProgress" class="btn btn-success">Save</button>
+          <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Cancel</button>
+        </div>
+      </form>
+    </div>
+
+    <div *ngIf="dataError" class="text-center">
+      <h4>{{ dataErrorMessage }}</h4>
+      <h6>Additional information is available in the console</h6>
+      <div class="pull-right" style="margin-bottom: 10px;">
+        <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>
+      </div>
+    </div>
+
+    <div *ngIf="fetchingData" class="text-center">
+      <i class="fa fa-spinner fa-spin"></i>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div>
+  <div class="container">
+    <div class="modal-header">
+      <div class="modal-title">Delete Member</div>
+    </div>
+
+    <div class="modal-body">
+      <div class="text-center" *ngIf="!dataError">
+        <h4>WARNING!</h4>
+        <h4>You are about to delete member {{userName}}</h4>
+        <h4>Are you sure?</h4>
+        <div class="pull-right" style="margin-bottom: 10px;">
+          <button type="button" [disabled]="submitInProgress" class="btn btn-danger" (click)="deleteMember()">Yes</button>
+          <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">No</button>
+        </div>
+      </div>
+
+      <div class="text-center" *ngIf="dataError">
+        <h4>Error occurred deleting the member</h4>
+        <h6>Additional information is available in the console</h6>
+        <div class="pull-right" style="margin-bottom: 10px;">
+          <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

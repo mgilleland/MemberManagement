@@ -1,0 +1,43 @@
+<div *ngIf="!dataError">
+  <div class="pull-right" style="margin-bottom: 10px;">
+    <button class="btn btn-primary" (click)="addNewMember()">Add New Member</button>
+  </div>
+
+  <div>
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table-striped hover">
+      <thead>
+      <tr>
+        <th>User Name</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th class="optional-column">Email</th>
+        <th class="optional-column">Phone Number</th>
+        <th class="optional-column" data-sortable="false">Birth Day</th>
+        <th data-sortable="false"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let member of this.members">
+        <td>{{member.userName}}</td>
+        <td>{{member.firstName}}</td>
+        <td>{{member.lastName}}</td>
+        <td class="optional-column">{{member.email}}</td>
+        <td class="optional-column">{{member.phoneNumber | phone }}</td>
+        <td class="optional-column">{{member.dateOfBirth | date: "dd/MM/yyyy"}}</td>
+        <td class="text-center">
+          <button class="btn btn-sm btn-primary" title="Edit the member" (click)="editMember(member.id)">
+            <i class="fa fa-edit"></i>
+          </button>
+          <button class="btn btn-sm btn-danger" title="Delete the member" (click)="deleteMember(member.id, member.userName)">
+            <i class="fa fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div *ngIf="dataError" class="text-center">
+  <h4>An error occurred getting the Member List</h4>
+  <h6>Additional information is available in the console</h6>
+</div>
