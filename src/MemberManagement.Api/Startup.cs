@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace MemberManagement.Api
 {
@@ -44,6 +45,19 @@ namespace MemberManagement.Api
             services.AddMvc();
             services.AddCors();
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Version = "v1",
+                    Title = "Veterinary Member Management",
+                    Description = "Services used to manage veterinary members",
+                    TermsOfService = "None",
+                    Contact = new Contact() {Name = "Mark Gilleland"}
+                });
+                c.CustomSchemaIds(x => x.FullName);
+            });
+
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped(typeof(IMemberRepository), typeof(MemberRepository));
             services.AddMediatR();
@@ -62,6 +76,11 @@ namespace MemberManagement.Api
                 .AllowAnyMethod());
             app.UseMiddleware<ErrorHandlingMiddleware>();
             app.UseMvc();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Veterinary Member Management API v1");
+            });
         }
     }
 }

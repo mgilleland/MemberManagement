@@ -4,6 +4,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { DataTablesModule } from 'angular-datatables';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 import * as moment from 'moment';
 
 import { MembersAppComponent } from './members-app.component';
@@ -20,7 +22,8 @@ import { PhonePipe } from './pipes/phone.pipe';
     FormsModule,
     ReactiveFormsModule,
     NgbModule.forRoot(),
-    DataTablesModule
+    DataTablesModule,
+    environment.production ? ServiceWorkerModule.register('ngsw-worker.js') : []
   ],
   declarations: [
     MembersAppComponent,

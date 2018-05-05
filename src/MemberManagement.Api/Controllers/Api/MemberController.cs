@@ -39,8 +39,8 @@ namespace MemberManagement.Api.Controllers.Api
         [HttpGet("IsUserNameUnique/{userName}")]
         public async Task<IActionResult> IsUserNameUnique(string userName)
         {
-            var member = await _mediator.Send(new Get.UserNameUniqueQuery { UserName = userName });
-            return Ok(member);
+            var isUnique = await _mediator.Send(new Get.UserNameUniqueQuery { UserName = userName });
+            return Ok(isUnique);
         }
 
         [HttpPost]

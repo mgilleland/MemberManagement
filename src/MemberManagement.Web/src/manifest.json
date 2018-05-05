@@ -1,0 +1,47 @@
+{
+  "name": "Veterinary Member Management Prototype",
+  "short_name": "VetMembers",
+  "description": "A prototype application to demonstrate Angular 5 as a PWA using an ASP.Net Core Web API",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/assets/Icons/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/Icons/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/Icons/mstile-150x150",
+      "sizes": "150x150",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/Icons/android-chrome-192x192",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/Icons/android-chrome-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/Icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/Icons/android-chrome-384x384.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url":  "index.html" 
+}

@@ -6,6 +6,8 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta name="theme-color" content="#fff" />
+  <link rel="manifest" href="manifest.json">
   <base href="/">
 </head>
 <body>
@@ -15,7 +17,7 @@
   <header id="header">
     <div class="container-fluid">
       <div id="logo" class="pull-left">
-        <h1><a href="#intro" class="scrollto">Vetinary Members</a></h1>
+        <h1><a href="#intro" class="scrollto">Veterinary Members</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!--<a href="#intro"><img src="assets/Images/Logo.jpg" alt="" title="" /></a>-->
       </div>
@@ -122,6 +124,11 @@
           <members-app>
             <div id="loading"></div>
           </members-app>
+          <noscript>
+            <h3 style="color: #673ab7; margin: 2rem;">
+              Sorry, but the app is not available without javascript enabled
+            </h3>
+          </noscript>
         </div>
       </div>
     </section><!-- #member -->
@@ -134,7 +141,7 @@
         <div class="section-header">
           <h3>Contact Info</h3>
           <p>
-            This Vetinary Member Management Prototype was written by
+            This Veterinary Member Management Prototype was written by
             <a href="https://www.linkedin.com/in/mark-gilleland-4887759/" target="_blank">Mark Gilleland</a> and is hosted in
             <a href="https://azure.microsoft.com/en-us/services/app-service/web/" target="_blank">Azure</a>.
             It demonstrates a number of technologies including:

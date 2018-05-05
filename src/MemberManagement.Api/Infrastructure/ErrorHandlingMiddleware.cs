@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
+using System.Diagnostics;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -20,6 +21,8 @@ namespace MemberManagement.Api.Infrastructure
             try
             {
                 await _next(context);
+                Trace.TraceInformation($"Request from {context.Connection.RemoteIpAddress} of " +
+                                       $"{context.Request.Method} for {context.Request.Path}");
             }
             catch (Exception ex)
             {
@@ -49,8 +52,8 @@ namespace MemberManagement.Api.Infrastructure
 
         private static async Task WriteExceptionAsync(HttpContext context, Exception exception, HttpStatusCode code)
         {
-            // No logging needed
             //Log.Error(exception, string.Empty);
+            Trace.TraceError(exception.Message);
 
             var response = context.Response;
             response.ContentType = "application/json";
