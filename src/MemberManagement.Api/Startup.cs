@@ -38,6 +38,15 @@ namespace MemberManagement.Api
             ConfigureServices(services);
         }
 
+        public void ConfigureProductionServices(IServiceCollection services)
+        {
+            services.AddDbContext<MemberManagementContext>(
+                options => options.UseSqlServer(
+                    Configuration.GetConnectionString("MemberManagementConnection")));
+
+            ConfigureServices(services);
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -71,7 +80,8 @@ namespace MemberManagement.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(builder => builder.WithOrigins("http://localhost:4200")
+            app.UseCors(builder => builder
+                .WithOrigins("http://localhost:4200", "https://vetmembermgt.azurewebsites.net")
                 .WithHeaders("accept", "content-type", "origin", "x-custom-header")
                 .AllowAnyMethod());
             app.UseMiddleware<ErrorHandlingMiddleware>();
