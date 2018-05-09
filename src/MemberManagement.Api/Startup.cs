@@ -50,6 +50,7 @@ namespace MemberManagement.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.BuildServiceProvider().GetService<MemberManagementContext>().Database.Migrate();
             services.AddAutoMapper();
             services.AddMvc();
             services.AddCors();
@@ -80,8 +81,11 @@ namespace MemberManagement.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            //TODO: Get this list from configuration
             app.UseCors(builder => builder
-                .WithOrigins("http://localhost:4200", "https://vetmembermgt.azurewebsites.net")
+                .WithOrigins("http://localhost:4200",
+                    "http://vetmembermgt.azurewebsites.net",
+                    "https://vetmembermgt.azurewebsites.net")
                 .WithHeaders("accept", "content-type", "origin", "x-custom-header")
                 .AllowAnyMethod());
             app.UseMiddleware<ErrorHandlingMiddleware>();

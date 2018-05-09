@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  memberApi: "http://localhost:54452/"
+  memberApi: "https://vetmembermgtapi.azurewebsites.net/"
 };
